@@ -1,6 +1,6 @@
 # Source Index
 
-This site was shaped from a local research pass across:
+This prompt-builder site was shaped from a local research pass across:
 
 - `SSB`
 - `p4a_xyz`

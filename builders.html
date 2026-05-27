@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Working plain-English Markdown questionnaire builders for L0 spaces, L1 place packs, L2 living boundaries and civic simulation briefs.">
-    <title>Markdown Builders | Straddie Digital Twin Builders</title>
+    <meta name="description" content="Working plain-English Markdown prompt builders for Level 0 (L0) spaces, Level 1 (L1) places, Level 2 (L2) living boundaries, visual generators and world-building simulations.">
+    <title>Prompt Builders | Straddie Digital Twin Builders</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
@@ -16,13 +16,13 @@
     <main id="main">
       <section class="page-hero compact-hero" id="top" aria-labelledby="page-title">
         <div>
-          <span class="section-label">Working builder</span>
-          <h1 id="page-title">Create a draft Markdown file from plain questions.</h1>
-          <p class="lede">Choose the scale, answer in normal language, then copy or download the .md file. The output is a starter note for human review, not permission to publish private or sensitive material.</p>
+          <span class="section-label">Working prompt builder</span>
+          <h1 id="page-title">Spawn plain-English prompts for visual generators and world builders.</h1>
+          <p class="lede">Choose a scale, answer in normal language, then copy or download a .md prompt packet. The output tells an image, video, 3D, game or simulation system what to generate, what to customise, and what not to invent.</p>
         </div>
         <figure class="image-card">
           <img src="assets/img/forms-intake-desk.webp" alt="Paper forms, a laptop and maker-space intake materials arranged on a desk">
-          <figcaption>The file is the handoff: something a person, agent or reviewer can reopen later.</figcaption>
+          <figcaption>The file is the handoff: one careful prompt packet that a person, agent or generator can reopen and tune.</figcaption>
         </figure>
       </section>
 
@@ -32,22 +32,41 @@
             <legend id="builder-title">Choose the builder</legend>
             <label>Builder type
               <select name="builder_type" data-builder-type>
-                <option value="l0-space">L0 sovereign space node</option>
-                <option value="l1-place">L1 sensorium place pack</option>
-                <option value="l2-boundary">L2 living boundary map</option>
-                <option value="simulation-brief">Civic simulation brief</option>
-                <option value="scene-space">Plain-English scene / space brief</option>
+                <option value="l0-space">Level 0 (L0) private room / object prompt</option>
+                <option value="l1-place">Level 1 (L1) place / venue world prompt</option>
+                <option value="l2-boundary">Level 2 (L2) island / watershed simulation prompt</option>
+                <option value="simulation-brief">Simulation customisation prompt</option>
+                <option value="scene-space">Plain-English visual scene prompt</option>
               </select>
             </label>
-            <label>Record title <input name="record_title" placeholder="e.g. Dunwich ferry notice screen place pack"></label>
-            <label>Prepared by <input name="prepared_by" placeholder="Person, project, venue, steward group or agent team"></label>
+            <label>Prompt title <input name="record_title" placeholder="e.g. Dunwich ferry gateway visual simulation"></label>
+            <label>Prepared by <input name="prepared_by" placeholder="Person, project, creative team, steward group or agent team"></label>
             <label>Source date <input name="source_date" type="date"></label>
+            <label>Target generator
+              <select name="target_engine">
+                <option>Visual image generator</option>
+                <option>Video generator</option>
+                <option>3D world builder</option>
+                <option>Game / interactive simulation</option>
+                <option>Agent planning simulation</option>
+                <option>Mixed pipeline</option>
+              </select>
+            </label>
+            <label>Output shape
+              <select name="output_shape">
+                <option>One hero image</option>
+                <option>Scene set / storyboard</option>
+                <option>Walkable 3D scene</option>
+                <option>Interactive simulation state</option>
+                <option>Prompt pack for iteration</option>
+              </select>
+            </label>
             <label>Draft status
               <select name="draft_status">
-                <option>Draft - needs human review</option>
-                <option>Private only</option>
-                <option>Permissioned review</option>
-                <option>Public-safe summary ready</option>
+                <option>Draft prompt - needs human review</option>
+                <option>Private prompt only</option>
+                <option>Permissioned creative review</option>
+                <option>Public-safe prompt ready</option>
               </select>
             </label>
           </fieldset>
@@ -55,15 +74,15 @@
           <fieldset data-dynamic-fields></fieldset>
 
           <fieldset>
-            <legend>Review, consent and correction</legend>
-            <label>Who should review this before wider use?
-              <textarea name="reviewer" placeholder="Owner, place steward, local group, cultural reviewer, clinician, planner, insurer, trusted reader or agent supervisor."></textarea>
+            <legend>Review, consent and reuse</legend>
+            <label>Who should review the generated scene before wider use?
+              <textarea name="reviewer" placeholder="Owner, place steward, local group, cultural reviewer, creative lead, planner, trusted reader or agent supervisor."></textarea>
             </label>
-            <label>What can be shared, and with whom?
-              <textarea name="consent_scope" placeholder="Private, local-only, public summary, aggregate metric, culturally governed, grant reviewer, venue team, council reviewer, etc."></textarea>
+            <label>What can be shared or reused?
+              <textarea name="consent_scope" placeholder="Private concept art, local-only simulation, public-safe render, grant mock-up, venue team walkthrough, training scene, open prompt template, etc."></textarea>
             </label>
-            <label>How should corrections or withdrawals happen?
-              <textarea name="correction_path" placeholder="Who can update, pause, delete, withdraw, source-check, change status or request takedown?"></textarea>
+            <label>How should wrong visuals be corrected?
+              <textarea name="correction_path" placeholder="What should be changed if the generator invents the wrong building, wrong Country context, wrong scale, wrong people, wrong weather, or unsafe access details?"></textarea>
             </label>
           </fieldset>
 
@@ -77,16 +96,16 @@
         </form>
 
         <aside class="output-panel" aria-labelledby="output-title">
-          <h2 id="output-title">Generated Markdown</h2>
+          <h2 id="output-title">Generated prompt packet</h2>
           <textarea data-markdown-output spellcheck="false"></textarea>
         </aside>
       </section>
 
       <section class="section accent-band" aria-labelledby="builder-boundary">
         <div class="wide-copy">
-          <span class="section-label">Builder boundary</span>
-          <h2 id="builder-boundary">The output is useful because it is cautious.</h2>
-          <p>The best generated note says what is known, what is unknown, who can review it, what should stay private and what a next agent can do. That is not boring. That is the floor a real digital twin can stand on.</p>
+          <span class="section-label">Prompt boundary</span>
+          <h2 id="builder-boundary">The output is useful because it tells the generator where the edges are.</h2>
+          <p>The best prompt packet says what to show, what to leave vague, what to customise, what must stay private, and what a reviewer should check. That is how a simulation can become vivid without becoming sloppy.</p>
         </div>
       </section>
 
