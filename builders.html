@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Working plain-English Markdown questionnaire builders for L0 spaces, L1 place packs, L2 living boundaries and civic simulation briefs.">
+    <title>Markdown Builders | Straddie Digital Twin Builders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body data-page="builders">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-site-header></header>
+    <main id="main">
+      <section class="page-hero compact-hero" id="top" aria-labelledby="page-title">
+        <div>
+          <span class="section-label">Working builder</span>
+          <h1 id="page-title">Create a draft Markdown file from plain questions.</h1>
+          <p class="lede">Choose the scale, answer in normal language, then copy or download the .md file. The output is a starter note for human review, not permission to publish private or sensitive material.</p>
+        </div>
+        <figure class="image-card">
+          <img src="assets/img/forms-intake-desk.webp" alt="Paper forms, a laptop and maker-space intake materials arranged on a desk">
+          <figcaption>The file is the handoff: something a person, agent or reviewer can reopen later.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section builder-section" aria-labelledby="builder-title">
+        <form class="builder-form" data-digital-twin-builder>
+          <fieldset>
+            <legend id="builder-title">Choose the builder</legend>
+            <label>Builder type
+              <select name="builder_type" data-builder-type>
+                <option value="l0-space">L0 sovereign space node</option>
+                <option value="l1-place">L1 sensorium place pack</option>
+                <option value="l2-boundary">L2 living boundary map</option>
+                <option value="simulation-brief">Civic simulation brief</option>
+                <option value="scene-space">Plain-English scene / space brief</option>
+              </select>
+            </label>
+            <label>Record title <input name="record_title" placeholder="e.g. Dunwich ferry notice screen place pack"></label>
+            <label>Prepared by <input name="prepared_by" placeholder="Person, project, venue, steward group or agent team"></label>
+            <label>Source date <input name="source_date" type="date"></label>
+            <label>Draft status
+              <select name="draft_status">
+                <option>Draft - needs human review</option>
+                <option>Private only</option>
+                <option>Permissioned review</option>
+                <option>Public-safe summary ready</option>
+              </select>
+            </label>
+          </fieldset>
+
+          <fieldset data-dynamic-fields></fieldset>
+
+          <fieldset>
+            <legend>Review, consent and correction</legend>
+            <label>Who should review this before wider use?
+              <textarea name="reviewer" placeholder="Owner, place steward, local group, cultural reviewer, clinician, planner, insurer, trusted reader or agent supervisor."></textarea>
+            </label>
+            <label>What can be shared, and with whom?
+              <textarea name="consent_scope" placeholder="Private, local-only, public summary, aggregate metric, culturally governed, grant reviewer, venue team, council reviewer, etc."></textarea>
+            </label>
+            <label>How should corrections or withdrawals happen?
+              <textarea name="correction_path" placeholder="Who can update, pause, delete, withdraw, source-check, change status or request takedown?"></textarea>
+            </label>
+          </fieldset>
+
+          <div class="builder-actions">
+            <button class="button primary" type="submit">Update Markdown</button>
+            <button class="button secondary" type="button" data-copy-markdown>Copy Markdown</button>
+            <button class="button secondary" type="button" data-download-markdown>Download .md</button>
+            <button class="button secondary" type="button" data-clear-form>Clear</button>
+          </div>
+          <p class="status-line" data-builder-status aria-live="polite"></p>
+        </form>
+
+        <aside class="output-panel" aria-labelledby="output-title">
+          <h2 id="output-title">Generated Markdown</h2>
+          <textarea data-markdown-output spellcheck="false"></textarea>
+        </aside>
+      </section>
+
+      <section class="section accent-band" aria-labelledby="builder-boundary">
+        <div class="wide-copy">
+          <span class="section-label">Builder boundary</span>
+          <h2 id="builder-boundary">The output is useful because it is cautious.</h2>
+          <p>The best generated note says what is known, what is unknown, who can review it, what should stay private and what a next agent can do. That is not boring. That is the floor a real digital twin can stand on.</p>
+        </div>
+      </section>
+
+      <div class="sequence-wrap" data-sequence-nav></div>
+    </main>
+    <footer class="site-footer" data-site-footer></footer>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top">Top</button>
+    <script src="script.js"></script>
+    <script src="builder.js"></script>
+  </body>
+</html>
