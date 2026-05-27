@@ -6,7 +6,7 @@ const navItems = [
   ["l2", "L2 / Level 2", "l2.html"],
   ["builders", "Builders", "builders.html"],
   ["network", "Network", "network.html"],
-  ["boundaries", "Boundaries", "boundaries.html"],
+  ["boundaries", "Sovereignty", "boundaries.html"],
   ["sources", "Sources", "sources.html"]
 ];
 
@@ -46,10 +46,10 @@ function renderFooter() {
 
   footer.innerHTML = `
     <div class="footer-inner">
-      <p>Straddie Digital Twin Builders. Plain-English prompt questionnaires for Level 0 (L0) to Level 2 (L2) scenes, spaces and living-boundary simulations.</p>
+      <p>Straddie Digital Twin Builders. Plain-English prompt questionnaires for Level 0 (L0) to Level 2 (L2) scenes, spaces, islands and watershed simulations.</p>
       <nav class="footer-links" aria-label="Footer links">
         <a href="sources.html">Sources</a>
-        <a href="boundaries.html">Boundaries</a>
+        <a href="boundaries.html">Sovereignty</a>
         <a href="https://auraofintelligence.github.io/straddie-digital-twin-builders/" target="_blank" rel="noopener noreferrer">Live site</a>
         <a href="https://github.com/auraofintelligence/straddie-digital-twin-builders" target="_blank" rel="noopener noreferrer">Source repo</a>
       </nav>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Working plain-English Markdown prompt builders for Level 0 (L0) spaces, Level 1 (L1) places, Level 2 (L2) living boundaries, visual generators and world-building simulations.">
+    <meta name="description" content="Working plain-English Markdown prompt builders for Level 0 (L0) spaces, Level 1 (L1) places, Level 2 (L2) island and watershed simulations, visual generators and world builders.">
     <title>Prompt Builders | Straddie Digital Twin Builders</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
         <div>
           <span class="section-label">Working prompt builder</span>
           <h1 id="page-title">Spawn plain-English prompts for visual generators and world builders.</h1>
-          <p class="lede">Choose a scale, answer in normal language, then copy or download a .md prompt packet. The output tells an image, video, 3D, game or simulation system what to generate, what to customise, and what not to invent.</p>
+          <p class="lede">Choose a scale, answer in normal language, then copy or download a .md prompt packet. The output tells an image, video, 3D, game or simulation system what to generate, what to customise, and what you choose to leave out.</p>
         </div>
         <figure class="image-card">
           <img src="assets/img/forms-intake-desk.webp" alt="Paper forms, a laptop and maker-space intake materials arranged on a desk">
@@ -40,7 +40,7 @@
               </select>
             </label>
             <label>Prompt title <input name="record_title" placeholder="e.g. Dunwich ferry gateway visual simulation"></label>
-            <label>Prepared by <input name="prepared_by" placeholder="Person, project, creative team, steward group or agent team"></label>
+            <label>Prepared by <input name="prepared_by" placeholder="Person, project, creative team, local group or agent team"></label>
             <label>Source date <input name="source_date" type="date"></label>
             <label>Target generator
               <select name="target_engine">
@@ -61,12 +61,12 @@
                 <option>Prompt pack for iteration</option>
               </select>
             </label>
-            <label>Draft status
+            <label>Prompt status
               <select name="draft_status">
-                <option>Draft prompt - needs human review</option>
+                <option>Draft prompt - owner checks it</option>
                 <option>Private prompt only</option>
-                <option>Permissioned creative review</option>
-                <option>Public-safe prompt ready</option>
+                <option>Shared with chosen helpers</option>
+                <option>Public version ready</option>
               </select>
             </label>
           </fieldset>
@@ -74,15 +74,15 @@
           <fieldset data-dynamic-fields></fieldset>
 
           <fieldset>
-            <legend>Review, consent and reuse</legend>
-            <label>Who should review the generated scene before wider use?
-              <textarea name="reviewer" placeholder="Owner, place steward, local group, cultural reviewer, creative lead, planner, trusted reader or agent supervisor."></textarea>
+            <legend>Your sharing choices</legend>
+            <label>Who do you invite to help tune it?
+              <textarea name="reviewer" placeholder="Owner, local group, cultural reader, creative lead, planner, trusted reader or agent supervisor."></textarea>
             </label>
-            <label>What can be shared or reused?
-              <textarea name="consent_scope" placeholder="Private concept art, local-only simulation, public-safe render, grant mock-up, venue team walkthrough, training scene, open prompt template, etc."></textarea>
+            <label>What do you choose to share or reuse?
+              <textarea name="consent_scope" placeholder="Private concept art, local-only simulation, shareable render, grant mock-up, venue team walkthrough, training scene, open prompt template, etc."></textarea>
             </label>
-            <label>How should wrong visuals be corrected?
-              <textarea name="correction_path" placeholder="What should be changed if the generator invents the wrong building, wrong Country context, wrong scale, wrong people, wrong weather, or unsafe access details?"></textarea>
+            <label>How do you want to revise wrong visuals?
+              <textarea name="correction_path" placeholder="Change the building, Country context, scale, people, weather, access detail, camera angle, style, or local-only details."></textarea>
             </label>
           </fieldset>
 
@@ -103,9 +103,9 @@
 
       <section class="section accent-band" aria-labelledby="builder-boundary">
         <div class="wide-copy">
-          <span class="section-label">Prompt boundary</span>
-          <h2 id="builder-boundary">The output is useful because it tells the generator where the edges are.</h2>
-          <p>The best prompt packet says what to show, what to leave vague, what to customise, what must stay private, and what a reviewer should check. That is how a simulation can become vivid without becoming sloppy.</p>
+          <span class="section-label">Self-sovereign prompt</span>
+          <h2 id="builder-boundary">The output follows your choices.</h2>
+          <p>Fill in what to show, what to keep local, what to customise, and who gets a say. The result is a vivid simulation prompt with fewer wrong guesses and more owner control.</p>
         </div>
       </section>
 

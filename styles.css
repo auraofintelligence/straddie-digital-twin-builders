@@ -199,6 +199,10 @@ h3,
   font-weight: 900;
 }
 
+.hero-copy h1 span {
+  display: block;
+}
+
 .hero-lede,
 .lede {
   font-size: clamp(1.04rem, 1.7vw, 1.28rem);
@@ -850,10 +854,23 @@ td {
 
   .hero-copy {
     padding-top: 4rem;
+    width: calc(100% - 2rem);
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.7rem, 16vw, 4.8rem);
+    max-width: 100%;
+    font-size: clamp(2.4rem, 12.5vw, 3.35rem);
+    line-height: .95;
+  }
+
+  .hero-lede {
+    max-width: 32ch;
+    font-size: .98rem;
+    line-height: 1.45;
+  }
+
+  .hero-actions .button {
+    width: 100%;
   }
 
   .section,

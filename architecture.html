@@ -17,8 +17,8 @@
       <section class="page-hero" id="top" aria-labelledby="page-title">
         <div>
           <span class="section-label">Architecture</span>
-          <h1 id="page-title">Level 0 (L0) private space, Level 1 (L1) place mesh, Level 2 (L2) living boundary.</h1>
-          <p class="lede">The Sovereign Space Builder and P4A patterns both point to the same practical ladder: prompt the private scene first, then the trusted local world, then the public or bioregional simulation only when the context has earned that scale.</p>
+          <h1 id="page-title">Level 0 (L0) private space, Level 1 (L1) place mesh, Level 2 (L2) island / watershed simulation.</h1>
+          <p class="lede">The Sovereign Space Builder and P4A patterns both point to the same practical ladder: start with the private scene you control, expand into a local world with chosen helpers, then publish a larger island or watershed simulation when you choose that scale.</p>
         </div>
         <figure class="image-card">
           <img src="assets/img/p4a-map-card.webp" alt="P4A civic map artwork with layered civic pathways">
@@ -32,21 +32,21 @@
             <span>L0</span>
             <div>
               <h2 id="scale-title">Level 0 (L0) private scene</h2>
-              <p>A room, home, studio, capsule, garden, device cluster or personal object prompt. It is owned by the person or steward closest to it. Raw health, identity, household, sensor and emotional context stays out of generated visuals by default.</p>
+              <p>A room, home, studio, capsule, garden, device cluster or personal object prompt. The person closest to it owns the first version and chooses what detail stays local.</p>
             </div>
           </article>
           <article class="scale-row">
             <span>L1</span>
             <div>
-              <h2>Level 1 (L1) trusted place world</h2>
-              <p>A venue, street, club, Ballow Road hub, maker-space, kiosk, noticeboard, event crew or local project. Level 1 (L1) is where selected local context becomes a scene that can be rendered, walked through, customised or rehearsed.</p>
+              <h2>Level 1 (L1) shared place world</h2>
+              <p>A venue, street, club, Ballow Road hub, maker-space, kiosk, noticeboard, event crew or local project. Add selected local context and the builder outputs a scene that can be rendered, walked through, customised or rehearsed.</p>
             </div>
           </article>
           <article class="scale-row">
             <span>L2</span>
             <div>
-              <h2>Level 2 (L2) living boundary simulation</h2>
-              <p>The island, a town network, a civic front, a catchment or the Moreton Bay watershed. Level 2 (L2) should receive public-source patterns and reviewable context, not raw private lives.</p>
+              <h2>Level 2 (L2) island / watershed simulation</h2>
+              <p>The island, a town network, a civic front, a catchment or the Moreton Bay watershed. Level 2 (L2) uses public-source patterns and the summaries people choose to share.</p>
             </div>
           </article>
         </div>
@@ -59,10 +59,10 @@
           <p>This is the plain-English version of the technical stack: CRDTs, DIDs, Verifiable Credentials and GraphRAG matter later. The first move is more humble: make a clear .md prompt packet with a scene, scale, camera, style, source hints, customisation controls and negative prompt.</p>
         </div>
         <div class="timeline">
-          <article><span>01</span><div><h3>Observe</h3><p>Look at the scene without forcing a solution. What is the room, place, route or boundary actually carrying?</p></div></article>
+          <article><span>01</span><div><h3>Observe</h3><p>Look at the scene without forcing a solution. What is the room, place, route, island or watershed actually carrying?</p></div></article>
           <article><span>02</span><div><h3>Prompt</h3><p>Turn the observation into a Markdown prompt packet with ordinary language, a source date and a scale label.</p></div></article>
           <article><span>03</span><div><h3>Render</h3><p>Send the packet to a visual generator, video model, 3D world builder, game prototype or agent simulation.</p></div></article>
-          <article><span>04</span><div><h3>Review</h3><p>Ask what the generator got wrong, what it invented, and what should stay private or approval-only.</p></div></article>
+          <article><span>04</span><div><h3>Tune</h3><p>Check what the generator got wrong, what it invented, and what you want kept local.</p></div></article>
           <article><span>05</span><div><h3>Customise</h3><p>Adjust weather, crowd level, camera angle, screen state, route, lighting, material detail and scenario pressure.</p></div></article>
         </div>
       </section>
@@ -73,12 +73,12 @@
           <h2 id="plain-title">What the stack means without jargon.</h2>
         </div>
         <div class="info-grid">
-          <article><h3>Offline-first</h3><p>The prompt packet should remain useful on a laptop, phone or kiosk even if the internet is patchy.</p></article>
-          <article><h3>Consent first</h3><p>The person or steward closest to the scene decides what visual detail can move outward.</p></article>
-          <article><h3>Accuracy without oversharing</h3><p>Share enough to guide a generator without exposing private details or fake certainty.</p></article>
-          <article><h3>Correction path</h3><p>Every generated scene needs a way to fix wrong scale, wrong geography, wrong culture, wrong status or invented detail.</p></article>
+          <article><h3>Offline-first</h3><p>The prompt packet stays useful on a laptop, phone or kiosk even if the internet is patchy.</p></article>
+          <article><h3>Owner choice</h3><p>The person closest to the scene chooses what visual detail moves outward.</p></article>
+          <article><h3>Enough detail</h3><p>Give the generator enough to render the scene while keeping local detail local.</p></article>
+          <article><h3>Revision path</h3><p>Every generated scene needs a way to fix wrong scale, wrong geography, wrong place context, wrong status or invented detail.</p></article>
           <article><h3>Simulation is rehearsal</h3><p>The purpose is better choices before pressure, not a fantasy dashboard.</p></article>
-          <article><h3>Scale is earned</h3><p>Level 2 (L2) simulations should come from reviewed Level 0 (L0) and Level 1 (L1) context, not from scraping private life.</p></article>
+          <article><h3>Scale is chosen</h3><p>Level 2 (L2) simulations use the Level 0 (L0) and Level 1 (L1) context people choose to share.</p></article>
         </div>
       </section>
 
