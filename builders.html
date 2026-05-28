@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=two-section-builder">
+    <link rel="stylesheet" href="styles.css?v=builder-no-step-numbers">
   </head>
   <body data-page="builders">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +29,7 @@
       <section class="section builder-section" aria-labelledby="builder-title">
         <form class="builder-form" data-digital-twin-builder>
           <fieldset>
-            <legend id="builder-title">1. First prompt</legend>
+            <legend id="builder-title">Prompt builder</legend>
             <label>Builder type
               <select name="builder_type" data-builder-type>
                 <option value="l0-space">Level 0 (L0) private room / object prompt</option>
@@ -88,7 +88,7 @@
           </fieldset>
 
           <fieldset>
-            <legend>2. Optional next pass</legend>
+            <legend>Optional next pass</legend>
             <p class="field-guidance">Leave this blank if you only need the first prompt. Add notes here after the first result is close.</p>
             <div class="dynamic-fields" data-followup-fields></div>
           </fieldset>
@@ -122,6 +122,6 @@
     <footer class="site-footer" data-site-footer></footer>
     <button class="to-top" type="button" data-to-top aria-label="Back to top">Top</button>
     <script src="script.js"></script>
-    <script src="builder.js?v=two-section-builder"></script>
+    <script src="builder.js?v=builder-no-step-numbers"></script>
   </body>
 </html>
