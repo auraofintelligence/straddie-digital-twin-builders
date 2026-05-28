@@ -1,6 +1,7 @@
 (function () {
   const form = document.querySelector("[data-digital-twin-builder]");
   const dynamicFields = document.querySelector("[data-dynamic-fields]");
+  const followupFields = document.querySelector("[data-followup-fields]");
   const output = document.querySelector("[data-markdown-output]");
   const status = document.querySelector("[data-builder-status]");
   const typeSelect = document.querySelector("[data-builder-type]");
@@ -8,135 +9,102 @@
   const downloadButton = document.querySelector("[data-download-markdown]");
   const clearButton = document.querySelector("[data-clear-form]");
 
-  if (!form || !dynamicFields || !output || !typeSelect) return;
+  if (!form || !dynamicFields || !followupFields || !output || !typeSelect) return;
 
-  const fieldGroups = [
+  const primaryFields = [
     {
-      title: "Base render",
-      help: "Describe one picture. If it needs multiple places, times or outputs, put those in the follow-up notes.",
-      fields: [
-        {
-          name: "prompt_sentence",
-          label: "What is in the picture?",
-          hint: "One subject, one place, one clear result.",
-          key: "scene"
-        },
-        {
-          name: "real_place",
-          label: "Where is it?",
-          hint: "Name the real place, or say it is a concept inspired by that place.",
-          key: "place"
-        },
-        {
-          name: "focal_point",
-          label: "What should we notice first?",
-          hint: "This is the main subject. Keep it simple.",
-          key: "focal"
-        },
-        {
-          name: "camera_view",
-          label: "Where is the camera?",
-          hint: "Eye-level, overhead, close-up, wide shot, doorway view, isometric, or from across the street.",
-          key: "camera"
-        },
-        {
-          name: "light_weather",
-          label: "What light or weather?",
-          hint: "Morning sun, overcast day, warm workshop light, sunset, rain clearing, or night lighting.",
-          key: "light"
-        },
-        {
-          name: "style_reference",
-          label: "What should it look like?",
-          hint: "Realistic photo, clean concept art, tabletop model, storyboard frame, game-engine blockout.",
-          key: "style"
-        }
-      ]
+      name: "prompt_sentence",
+      label: "What is in the picture?",
+      hint: "One subject, one place, one clear result.",
+      key: "scene"
     },
     {
-      title: "Visible details",
-      help: "Only add details that can sit in the same frame without turning it into a collage.",
-      fields: [
+      name: "real_place",
+      label: "Where is it?",
+      hint: "Name the real place, or say it is a concept inspired by that place.",
+      key: "place"
+    },
+    {
+      name: "focal_point",
+      label: "What should we notice first?",
+      hint: "This is the main subject. Keep it simple.",
+      key: "focal"
+    },
+    {
+      name: "camera_view",
+      label: "Where is the camera?",
+      hint: "Eye-level, overhead, close-up, wide shot, doorway view, isometric, or from across the street.",
+      key: "camera"
+    },
+    {
+      name: "light_weather",
+      label: "What light or weather?",
+      hint: "Morning sun, overcast day, warm workshop light, sunset, rain clearing, or night lighting.",
+      key: "light"
+    },
+    {
+      name: "style_reference",
+      label: "What should it look like?",
+      hint: "Realistic photo, clean concept art, tabletop model, storyboard frame, game-engine blockout.",
+      key: "style"
+    },
         {
-          name: "foreground",
-          label: "What is closest to the camera?",
-          hint: "Three to five visible things. No private text unless you mean to show it.",
-          key: "foreground"
-        },
-        {
-          name: "middle_ground",
-          label: "What is around the main subject?",
-          hint: "The working area: path, bench, screen, room layout, waiting area, table map or doorway.",
-          key: "middle"
-        },
-        {
-          name: "background",
-          label: "What is behind it?",
-          hint: "Horizon, trees, bay, dunes, shelves, wall, nearby buildings or open sky.",
-          key: "background"
-        },
-        {
-          name: "materials_texture",
-          label: "What materials and colours?",
-          hint: "Timber, paper, sand, water, steel, weathered signs, green planting, local colours.",
-          key: "materials"
-        },
-        {
-          name: "people_movement",
-          label: "Are people shown?",
-          hint: "Say none, anonymous locals, hands only, small group, or simple movement.",
-          key: "movement"
+          name: "visible_details",
+          label: "What else is visible? (optional)",
+          hint: "Only include details that fit in the same frame. Keep it concrete.",
+          key: "visible"
         },
         {
           name: "must_be_accurate",
-          label: "What must not be guessed?",
+          label: "What must not be guessed? (optional)",
           hint: "Geography, scale, building type, public/private line, cultural context, or source date.",
           key: "accuracy"
         }
-      ]
+  ];
+
+  const optionalFields = [
+    {
+      name: "reference_materials",
+      label: "Reference images or links",
+      hint: "Name what each reference is for: place, camera, material, object shape, mood or map.",
+      key: "references"
     },
     {
-      title: "Follow-up notes",
-      help: "Use these after the first picture looks right. They are not part of the first render unless you choose to paste them.",
-      fields: [
-        {
-          name: "reference_materials",
-          label: "What references will you attach?",
-          hint: "Name what each reference is for: place, camera, material, object shape, mood or map.",
-          key: "references"
-        },
-        {
-          name: "assets_to_build",
-          label: "What separate parts might a world builder need later?",
-          hint: "One object per phrase: kiosk, path, screen, bench, ferry, table map, tool rack, garden bed.",
-          key: "assets"
-        },
-        {
-          name: "state_changes",
-          label: "What changes in a video or simulation?",
-          hint: "One or two changes: tide rising, screen changing, lights turning on, crowd growing, rain starting.",
-          key: "states"
-        },
-        {
-          name: "customisation_controls",
-          label: "What should be easy to change later?",
-          hint: "Camera, time of day, screen text, materials, clutter level, people count, route, weather.",
-          key: "controls"
-        },
-        {
-          name: "negative_prompt",
-          label: "What should not appear?",
-          hint: "Wrong place, fake logos, readable private text, named real people, dystopian panic, official-looking seal.",
-          key: "negative"
-        },
-        {
-          name: "iteration_handoff",
-          label: "What should the next version improve?",
-          hint: "Cleaner layout, more local detail, less clutter, calmer light, better map accuracy, simpler objects.",
-          key: "iteration"
-        }
-      ]
+      name: "follow_up_notes",
+      label: "What comes after the first result looks right?",
+      hint: "One edit, one short motion, or one world-building next step.",
+      key: "next"
+    },
+    {
+      name: "negative_prompt",
+      label: "What should not appear?",
+      hint: "Wrong place, fake logos, readable private text, named real people, dystopian panic, official-looking seal.",
+      key: "negative"
+    },
+    {
+      name: "private_exclusions",
+      label: "Private or sensitive details to leave out",
+      hint: "Names, exact addresses, access codes, private health information, unreviewed local details.",
+      key: "private"
     }
+  ];
+
+  const legacyNames = [
+    "foreground",
+    "middle_ground",
+    "background",
+    "materials_texture",
+    "people_movement",
+    "assets_to_build",
+    "state_changes",
+    "customisation_controls",
+    "iteration_handoff",
+    "reviewer",
+    "consent_scope",
+    "correction_path",
+    "draft_status",
+    "prepared_by",
+    "source_date"
   ];
 
   const configs = {
@@ -166,7 +134,9 @@
         states: "Make a second version at night with a desk lamp on.",
         controls: "Camera angle; clutter level; lighting; screen content.",
         negative: "Readable private text, faces, address labels, medical gear, surveillance wall, fake brands.",
-        iteration: "Make it less cluttered and easier to rebuild as a simple room."
+        iteration: "Make it less cluttered and easier to rebuild as a simple room.",
+        visible: "Notebook, pen, timber samples, small hand tools, workbench, laptop, blank cards, storage boxes, plain shelves, one window and soft green plants.",
+        next: "Make a night version with a desk lamp on."
       }
     },
     "l1-place": {
@@ -195,7 +165,9 @@
         states: "Make a second version with the same board in low-power evening mode.",
         controls: "Time of day; number of people; notice layout; weather; camera distance.",
         negative: "Fake logos, readable private notices, police-state wall, luxury development, panic scene, real faces.",
-        iteration: "Make the scene more recognisably local and less busy."
+        iteration: "Make the scene more recognisably local and less busy.",
+        visible: "Path edge, sandy ground, low planting, noticeboard shelter, bench, blank paper notices, bay water, ferry terminal shapes and coastal trees.",
+        next: "Make an evening version with the same board and the solar light on."
       }
     },
     "l2-boundary": {
@@ -224,7 +196,9 @@
         states: "Make a second version that highlights rain flowing from watershed to bay.",
         controls: "Map scale; labels on/off; ferry line on/off; rain layer on/off.",
         negative: "Disaster movie, fake authority seal, private property dots, secret sites, red panic overlays.",
-        iteration: "Make the geography clearer before adding data layers."
+        iteration: "Make the geography clearer before adding data layers.",
+        visible: "Paper legend, pencil, small timber blocks, raised island model, blue bay layer, simple ferry line and a pinned public watershed map in the background.",
+        next: "Make a second version that shows rain flowing from the watershed to the bay."
       }
     },
     "simulation-brief": {
@@ -253,7 +227,9 @@
         states: "Second pass: busier queue; third pass: rain starts; fourth pass: lights switch on.",
         controls: "Crowd level; weather; screen message; lighting; route open/closed.",
         negative: "Fake emergency order, individual tracking dots, medical advice, official seal, panic colours.",
-        iteration: "Make the base layout clear before adding moving states."
+        iteration: "Make the base layout clear before adding moving states.",
+        visible: "Legend, simple controls, queue area, path, public screen, shaded waiting zone, bay edge, road edge, trees and ferry ramp shape.",
+        next: "Make a second pass with a busier queue and rain starting."
       }
     },
     "scene-space": {
@@ -282,7 +258,9 @@
         states: "Second pass: active workshop version with a few tools moved.",
         controls: "Camera angle; clutter level; light; colour palette; screen left blank.",
         negative: "Readable private text, faces, fake logos, surveillance aesthetic, disaster scene.",
-        iteration: "Make it less cluttered and more clearly local."
+        iteration: "Make it less cluttered and more clearly local.",
+        visible: "Pen, blank paper cards, timber swatches, small tools, workbench, laptop with blank screen, storage boxes, open doorway, green plants and simple shelves.",
+        next: "Make an active workshop version with a few tools moved."
       }
     }
   };
@@ -374,6 +352,15 @@
     return config.examples[field.key] || "";
   }
 
+  function renderField(field, config) {
+    return `
+      <label>${field.label}
+        <span class="field-help">${field.hint}</span>
+        <textarea name="${field.name}" placeholder="${fieldExample(config, field)}"></textarea>
+      </label>
+    `;
+  }
+
   function renderDynamicFields() {
     const config = activeConfig();
     dynamicFields.innerHTML = `
@@ -381,65 +368,52 @@
         <strong>${config.title}</strong>
         <span>${config.guidance}</span>
       </div>
-      ${fieldGroups.map((group, index) => `
-        <fieldset class="prompt-step">
-          <legend>${index + 2}. ${group.title}</legend>
-          <p class="field-guidance">${group.help}</p>
-          ${group.fields.map((field) => `
-            <label>${field.label}
-              <span class="field-help">${field.hint}</span>
-              <textarea name="${field.name}" placeholder="${fieldExample(config, field)}"></textarea>
-            </label>
-          `).join("")}
-        </fieldset>
-      `).join("")}
+      <p class="field-guidance">Describe one picture. If it needs multiple places, times or outputs, put those in the optional next pass.</p>
+      ${primaryFields.map((field) => renderField(field, config)).join("")}
     `;
+    followupFields.innerHTML = optionalFields.map((field) => renderField(field, config)).join("");
   }
 
-  function addPromptLine(lines, label, body) {
+  function addClause(lines, body) {
     const text = clean(body);
-    if (text) lines.push(label + ": " + text);
+    const lowered = text.toLowerCase();
+    if (text && !lowered.endsWith("not supplied yet") && !lowered.endsWith("undefined")) lines.push(text);
   }
 
-  function conciseList(text) {
-    return clean(text).replace(/,\s*/g, ", ");
+  function addPrefixedClause(lines, prefix, body) {
+    const text = lowerFirst(body);
+    if (text) addClause(lines, prefix + text);
   }
 
-  function toolSettings() {
-    const profile = selectedTool();
-    return [
-      "Tool: " + profile.name,
-      "Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape"),
-      "Fidelity: " + (value("quality_target") || "Medium / normal quality")
-    ].join("\n");
+  function lowerFirst(text) {
+    const phrase = clean(text);
+    return phrase ? phrase.charAt(0).toLowerCase() + phrase.slice(1) : "";
   }
 
   function pastePrompt(config) {
     const profile = selectedTool();
     const lines = [
       profile.opener,
-      "Keep it to one place, one moment, one camera view and one main subject."
+      "Keep it to one place, one moment, one camera view and one main subject"
     ];
 
-    addPromptLine(lines, "Scene", value("prompt_sentence"));
-    addPromptLine(lines, "Place", value("real_place"));
-    addPromptLine(lines, "Main subject", value("focal_point"));
-    addPromptLine(lines, "Camera", value("camera_view"));
-    addPromptLine(lines, "Light", value("light_weather"));
-    addPromptLine(lines, "Style", value("style_reference"));
-    addPromptLine(lines, "Foreground", value("foreground"));
-    addPromptLine(lines, "Middle ground", value("middle_ground"));
-    addPromptLine(lines, "Background", value("background"));
-    addPromptLine(lines, "Materials and colours", value("materials_texture"));
-    addPromptLine(lines, profile.type === "video" ? "Movement" : "People", value("people_movement"));
-    addPromptLine(lines, "Do not guess", value("must_be_accurate"));
-    addPromptLine(lines, "Use attached references for", value("reference_materials"));
+    addClause(lines, value("prompt_sentence"));
+    addClause(lines, value("real_place"));
+    addPrefixedClause(lines, "The main subject is ", value("focal_point"));
+    addPrefixedClause(lines, "Camera: ", value("camera_view"));
+    addPrefixedClause(lines, "Light: ", value("light_weather"));
+    addPrefixedClause(lines, "Style: ", value("style_reference"));
+    addClause(lines, value("visible_details"));
+    addPrefixedClause(lines, "Do not guess: ", value("must_be_accurate"));
 
-    lines.push("Leave signs, screens and documents blank or unreadable unless exact public text is supplied.");
-    lines.push("Do not add private details, official approval, brand logos, named real people or sensitive locations.");
+    lines.push("Leave signs, screens and documents blank or unreadable unless exact public text is supplied");
+    lines.push("Do not add private details, official approval, brand logos, named real people or sensitive locations");
     lines.push(profile.closing);
 
-    return lines.join("\n");
+    return lines
+      .map((line) => clean(line).replace(/[.;:,\s]+$/g, ""))
+      .filter(Boolean)
+      .join(". ") + ".";
   }
 
   function negativePrompt() {
@@ -449,41 +423,12 @@
 
   function followUpPrompts() {
     const lines = [];
-    const iteration = clean(value("iteration_handoff"));
-    const states = clean(value("state_changes"));
-    const controls = clean(value("customisation_controls"));
-    const assets = clean(value("assets_to_build"));
-    const preparedBy = clean(value("prepared_by"));
-    const sourceDate = clean(value("source_date"));
-    const status = clean(value("draft_status"));
-    const reviewer = clean(value("reviewer"));
-    const consent = clean(value("consent_scope"));
-    const correction = clean(value("correction_path"));
+    const next = clean(value("follow_up_notes"));
+    const references = clean(value("reference_materials"));
     const privateDetails = clean(value("private_exclusions"));
 
-    if (iteration) {
-      lines.push("Edit pass: use the approved base image. Change only this: " + iteration + ". Keep the same place, camera angle, main subject and overall style.");
-      lines.push("");
-    }
-
-    if (states) {
-      lines.push("Video or simulation pass: use the approved base scene. Animate only these changes: " + states + ". Keep geography, object positions and camera direction stable.");
-      lines.push("");
-    }
-
-    if (assets || controls) {
-      lines.push("World-builder pass: use the approved base scene as the reference. Build separate editable parts: " + (conciseList(assets) || "not supplied yet") + ".");
-      if (controls) lines.push("Expose these simple controls: " + controls + ".");
-      lines.push("Keep the first world draft simple before adding extra states or data layers.");
-      lines.push("");
-    }
-
-    if (preparedBy) lines.push("Prepared by: " + preparedBy + ".");
-    if (sourceDate) lines.push("Source date: " + sourceDate + ".");
-    if (status && status !== "Draft prompt - owner checks it") lines.push("Status: " + status + ".");
-    if (reviewer) lines.push("Review with: " + reviewer + ".");
-    if (consent) lines.push("Share/reuse choice: " + consent + ".");
-    if (correction) lines.push("If the result is wrong: " + correction + ".");
+    if (next) lines.push("Next pass: " + next + ".");
+    if (references) lines.push("References: " + references + ".");
     if (privateDetails) lines.push("Do not include: " + privateDetails + ".");
 
     return clean(lines.join("\n")) || "No follow-up notes yet. Get the first image right before adding edits, video, states or world controls.";
@@ -499,12 +444,10 @@
       "",
       "## Prompt",
       "",
+      "Tool: " + selectedTool().name + " | Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape") + " | Fidelity: " + (value("quality_target") || "Medium / normal quality"),
+      "",
       "```text",
-      toolSettings(),
-      "",
       pastePrompt(config),
-      "",
-      "Avoid: " + negativePrompt(),
       "```"
     ];
 
@@ -528,12 +471,18 @@
     Array.from(form.elements).forEach((element) => {
       if (element.name) state[element.name] = element.value;
     });
+    legacyNames.forEach((name) => {
+      delete state[name];
+    });
     sessionStorage.setItem("straddieDigitalTwinBuilder", JSON.stringify(state));
   }
 
   function restoreState() {
     try {
       const state = JSON.parse(sessionStorage.getItem("straddieDigitalTwinBuilder") || "{}");
+      legacyNames.forEach((name) => {
+        delete state[name];
+      });
       if (state.builder_type && configs[state.builder_type]) typeSelect.value = state.builder_type;
       renderDynamicFields();
       Object.keys(state).forEach((name) => {

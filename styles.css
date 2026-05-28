@@ -744,6 +744,10 @@ body[data-page="architecture"] .visual-hero .image-card img {
   gap: 1rem;
 }
 
+fieldset > .dynamic-fields {
+  gap: .85rem;
+}
+
 .builder-note {
   display: grid;
   gap: .3rem;
@@ -792,6 +796,10 @@ label {
   margin-bottom: .9rem;
   font-weight: 700;
   color: var(--deep);
+}
+
+label:last-child {
+  margin-bottom: 0;
 }
 
 .field-guidance {

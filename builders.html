@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Nunito+Sans:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=short-export">
+    <link rel="stylesheet" href="styles.css?v=two-section-builder">
   </head>
   <body data-page="builders">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +29,7 @@
       <section class="section builder-section" aria-labelledby="builder-title">
         <form class="builder-form" data-digital-twin-builder>
           <fieldset>
-            <legend id="builder-title">1. Choose the output</legend>
+            <legend id="builder-title">1. First prompt</legend>
             <label>Builder type
               <select name="builder_type" data-builder-type>
                 <option value="l0-space">Level 0 (L0) private room / object prompt</option>
@@ -42,14 +42,6 @@
             <label>Prompt title
               <span class="field-help">A short name for the file and the scene.</span>
               <input name="record_title" placeholder="e.g. Dunwich ferry gateway world-building prompt">
-            </label>
-            <label>Prepared by
-              <span class="field-help">Person, project, creative team, local group or agent team.</span>
-              <input name="prepared_by" placeholder="e.g. Straddie noticeboard team">
-            </label>
-            <label>Source date
-              <span class="field-help">The date for the facts, site status or local notes used in this prompt.</span>
-              <input name="source_date" type="date">
             </label>
             <label>Target tool
               <span class="field-help">Choose where the first prompt is likely to go. This changes the wording and settings.</span>
@@ -92,36 +84,13 @@
                 <option>High / text or detailed map</option>
               </select>
             </label>
-            <label>Prompt status
-              <select name="draft_status">
-                <option>Draft prompt - owner checks it</option>
-                <option>Private prompt only</option>
-                <option>Shared with chosen helpers</option>
-                <option>Public version ready</option>
-              </select>
-            </label>
+            <div class="dynamic-fields" data-dynamic-fields></div>
           </fieldset>
 
-          <div class="dynamic-fields" data-dynamic-fields></div>
-
           <fieldset>
-            <legend>5. Private and review choices</legend>
-            <label>Who do you invite to help tune it?
-              <span class="field-help">A trusted person can catch wrong geography, cultural context, access issues or confusing visuals before you share.</span>
-              <textarea name="reviewer" placeholder="Owner, local group, cultural reader, creative lead, planner, trusted reader or agent supervisor."></textarea>
-            </label>
-            <label>What do you choose to share or reuse?
-              <span class="field-help">Say what version can leave your laptop: private, chosen helpers, public concept or reusable template.</span>
-              <textarea name="consent_scope" placeholder="Private concept art, local-only rehearsal scene, shareable render, grant mock-up, venue team walkthrough, training scene, open prompt template, etc."></textarea>
-            </label>
-            <label>How do you want to revise wrong visuals?
-              <span class="field-help">This gives the next prompt somewhere to go instead of starting again.</span>
-              <textarea name="correction_path" placeholder="Change the building, Country context, scale, people, weather, access detail, camera angle, style, or local-only details."></textarea>
-            </label>
-            <label>What private or sensitive details are not included?
-              <span class="field-help">The model does not need names, exact addresses, private health information, access codes or sensitive cultural/ecological locations.</span>
-              <textarea name="private_exclusions" placeholder="Names, household routines, private health details, exact access codes, private messages, sensitive locations, unreviewed source material."></textarea>
-            </label>
+            <legend>2. Optional next pass</legend>
+            <p class="field-guidance">Leave this blank if you only need the first prompt. Add notes here after the first result is close.</p>
+            <div class="dynamic-fields" data-followup-fields></div>
           </fieldset>
 
           <div class="builder-actions">
@@ -135,7 +104,7 @@
 
         <aside class="output-panel" aria-labelledby="output-title">
           <h2 id="output-title">Generated prompt packet</h2>
-          <p class="output-hint">The export starts as one prompt. A second notes section appears only when you add follow-up details.</p>
+          <p class="output-hint">The generator gets one paragraph. A notes section appears only when you add optional next-pass details.</p>
           <textarea data-markdown-output spellcheck="false"></textarea>
         </aside>
       </section>
@@ -153,6 +122,6 @@
     <footer class="site-footer" data-site-footer></footer>
     <button class="to-top" type="button" data-to-top aria-label="Back to top">Top</button>
     <script src="script.js"></script>
-    <script src="builder.js?v=short-export"></script>
+    <script src="builder.js?v=two-section-builder"></script>
   </body>
 </html>
