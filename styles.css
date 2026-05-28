@@ -335,18 +335,22 @@ main .button.secondary,
 
 .visual-hero::before {
   content: "";
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0 auto 0 0;
   z-index: 1;
-  width: min(940px, 64vw);
-  background: linear-gradient(90deg, rgba(6, 32, 45, .9) 0%, rgba(6, 32, 45, .78) 48%, rgba(6, 32, 45, .42) 76%, rgba(6, 32, 45, 0) 100%);
+  width: min(1040px, 64vw);
+  background: linear-gradient(90deg, rgba(6, 32, 45, .97) 0%, rgba(6, 32, 45, .91) 48%, rgba(6, 32, 45, .62) 76%, rgba(6, 32, 45, 0) 100%);
   pointer-events: none;
 }
 
 .visual-hero::after {
   content: "";
-  grid-area: 1 / 1;
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  background: linear-gradient(90deg, rgba(6, 32, 45, .28) 0%, rgba(6, 32, 45, .14) 48%, rgba(6, 32, 45, .04) 100%);
+  background:
+    linear-gradient(180deg, rgba(6, 32, 45, .08) 0%, rgba(6, 32, 45, .22) 58%, rgba(6, 32, 45, .42) 100%),
+    linear-gradient(90deg, rgba(6, 32, 45, .44) 0%, rgba(6, 32, 45, .22) 48%, rgba(6, 32, 45, .08) 100%);
   pointer-events: none;
 }
 
@@ -1068,9 +1072,18 @@ td {
   }
 
   .visual-hero > div {
-    width: calc(100% - 2rem);
-    margin: 0 auto;
-    padding: 17rem 0 4rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 17rem 1rem 4rem;
+  }
+
+  .visual-hero .lede {
+    max-width: min(34ch, 100%);
+    font-size: .98rem;
+    line-height: 1.45;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .visual-hero .image-card img {
