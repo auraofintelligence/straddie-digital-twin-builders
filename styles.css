@@ -739,11 +739,44 @@ body[data-page="architecture"] .visual-hero .image-card img {
   padding: 1rem;
 }
 
+.dynamic-fields {
+  display: grid;
+  gap: 1rem;
+}
+
+.builder-note {
+  display: grid;
+  gap: .3rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(13, 78, 104, .18);
+  border-left: 5px solid var(--bay);
+  border-radius: var(--radius);
+  background: #f7fbfa;
+}
+
+.builder-note strong {
+  color: var(--deep);
+  font-family: "Nunito Sans", Arial, sans-serif;
+  font-size: 1.05rem;
+}
+
+.builder-note span,
+.field-guidance,
+.field-help,
+.output-hint {
+  color: var(--muted);
+}
+
 fieldset {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   margin: 0 0 1rem;
   padding: 1rem;
+}
+
+.prompt-step {
+  margin-bottom: 0;
 }
 
 legend {
@@ -759,6 +792,17 @@ label {
   margin-bottom: .9rem;
   font-weight: 700;
   color: var(--deep);
+}
+
+.field-guidance {
+  margin: 0 0 1rem;
+  font-size: .94rem;
+}
+
+.field-help {
+  font-weight: 400;
+  font-size: .88rem;
+  line-height: 1.4;
 }
 
 input,
@@ -787,6 +831,11 @@ textarea {
 .output-panel h2 {
   margin: 0 0 .8rem;
   font-size: 1.2rem;
+}
+
+.output-hint {
+  margin: -.35rem 0 .85rem;
+  font-size: .92rem;
 }
 
 .output-panel textarea {

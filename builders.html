@@ -17,8 +17,8 @@
       <section class="page-hero visual-hero" id="top" aria-labelledby="page-title">
         <div>
           <span class="section-label">Working prompt builder</span>
-          <h1 id="page-title">Spawn plain-English prompts for visual generators and world builders.</h1>
-          <p class="lede">Choose a scale, answer in normal language, then copy or download a Markdown (.md) prompt packet. The output is preparation for outside tools: Nano Banana 2, World Labs, image generators, video models, three-dimensional (3D) and four-dimensional (4D) world builders, game engines or simulation systems.</p>
+          <h1 id="page-title">Turn the picture in your head into a model-ready prompt.</h1>
+          <p class="lede">Answer simple questions. The builder writes a clean copy-paste prompt first, then a Markdown (.md) packet with the scene recipe, source notes, edit controls and privacy choices underneath.</p>
         </div>
         <figure class="image-card">
           <img src="assets/img/forms-intake-desk.webp" alt="Paper forms, a laptop and maker-space intake materials arranged on a desk">
@@ -29,7 +29,7 @@
       <section class="section builder-section" aria-labelledby="builder-title">
         <form class="builder-form" data-digital-twin-builder>
           <fieldset>
-            <legend id="builder-title">Choose the builder</legend>
+            <legend id="builder-title">1. Choose the output</legend>
             <label>Builder type
               <select name="builder_type" data-builder-type>
                 <option value="l0-space">Level 0 (L0) private room / object prompt</option>
@@ -39,26 +39,44 @@
                 <option value="scene-space">Plain-English visual scene prompt</option>
               </select>
             </label>
-            <label>Prompt title <input name="record_title" placeholder="e.g. Dunwich ferry gateway world-building prompt"></label>
-            <label>Prepared by <input name="prepared_by" placeholder="Person, project, creative team, local group or agent team"></label>
-            <label>Source date <input name="source_date" type="date"></label>
+            <label>Prompt title
+              <span class="field-help">A short name for the file and the scene.</span>
+              <input name="record_title" placeholder="e.g. Dunwich ferry gateway world-building prompt">
+            </label>
+            <label>Prepared by
+              <span class="field-help">Person, project, creative team, local group or agent team.</span>
+              <input name="prepared_by" placeholder="e.g. Straddie noticeboard team">
+            </label>
+            <label>Source date
+              <span class="field-help">The date for the facts, site status or local notes used in this prompt.</span>
+              <input name="source_date" type="date">
+            </label>
             <label>Target generator
               <select name="target_engine">
-                <option>Visual image generator</option>
-                <option>Video generator</option>
-                <option>Three-dimensional (3D) world builder</option>
-                <option>Game or interactive simulation tool</option>
-                <option>Planning assistant or agent simulation</option>
+                <option>Image generator - one still image</option>
+                <option>Video generator - short moving scene</option>
+                <option>Three-dimensional (3D) world builder - walkable space</option>
+                <option>Four-dimensional (4D) simulation - time and state changes</option>
+                <option>Game or interactive prototype</option>
                 <option>Mixed pipeline</option>
               </select>
             </label>
             <label>Output shape
               <select name="output_shape">
-                <option>One hero image</option>
+                <option>One accurate still image</option>
                 <option>Scene set / storyboard</option>
                 <option>Walkable three-dimensional (3D) scene</option>
-                <option>Interactive simulation brief</option>
-                <option>Prompt pack for iteration</option>
+                <option>Four-dimensional (4D) state-change brief</option>
+                <option>Prompt pack for repeated iteration</option>
+              </select>
+            </label>
+            <label>Quality target
+              <select name="quality_target">
+                <option>Accurate local concept</option>
+                <option>Beautiful hero image</option>
+                <option>Simple builder blockout first</option>
+                <option>Storyboard sequence</option>
+                <option>World-builder handoff</option>
               </select>
             </label>
             <label>Prompt status
@@ -71,18 +89,25 @@
             </label>
           </fieldset>
 
-          <fieldset data-dynamic-fields></fieldset>
+          <div class="dynamic-fields" data-dynamic-fields></div>
 
           <fieldset>
-            <legend>Your sharing choices</legend>
+            <legend>5. Private and review choices</legend>
             <label>Who do you invite to help tune it?
+              <span class="field-help">A trusted person can catch wrong geography, cultural context, access issues or confusing visuals before you share.</span>
               <textarea name="reviewer" placeholder="Owner, local group, cultural reader, creative lead, planner, trusted reader or agent supervisor."></textarea>
             </label>
             <label>What do you choose to share or reuse?
+              <span class="field-help">Say what version can leave your laptop: private, chosen helpers, public concept or reusable template.</span>
               <textarea name="consent_scope" placeholder="Private concept art, local-only rehearsal scene, shareable render, grant mock-up, venue team walkthrough, training scene, open prompt template, etc."></textarea>
             </label>
             <label>How do you want to revise wrong visuals?
+              <span class="field-help">This gives the next prompt somewhere to go instead of starting again.</span>
               <textarea name="correction_path" placeholder="Change the building, Country context, scale, people, weather, access detail, camera angle, style, or local-only details."></textarea>
+            </label>
+            <label>What private or sensitive details are not included?
+              <span class="field-help">The model does not need names, exact addresses, private health information, access codes or sensitive cultural/ecological locations.</span>
+              <textarea name="private_exclusions" placeholder="Names, household routines, private health details, exact access codes, private messages, sensitive locations, unreviewed source material."></textarea>
             </label>
           </fieldset>
 
@@ -97,6 +122,7 @@
 
         <aside class="output-panel" aria-labelledby="output-title">
           <h2 id="output-title">Generated prompt packet</h2>
+          <p class="output-hint">The first section is the clean model prompt. The rest explains the scene for humans, agents and later edits.</p>
           <textarea data-markdown-output spellcheck="false"></textarea>
         </aside>
       </section>
@@ -104,8 +130,8 @@
       <section class="section accent-band" aria-labelledby="builder-boundary">
         <div class="wide-copy">
           <span class="section-label">Self-sovereign prompt</span>
-          <h2 id="builder-boundary">The output follows your choices.</h2>
-          <p>Fill in what to show, what to keep local, what to customise, and who gets a say. The result is a vivid prompt packet for whichever external model or world builder you choose next.</p>
+          <h2 id="builder-boundary">Simple questions in. Clean prompt out.</h2>
+          <p>The builder keeps the model-facing prompt clear and puts human notes underneath. That gives better images and worlds without asking everyday people to learn prompt-engineering jargon first.</p>
         </div>
       </section>
 
