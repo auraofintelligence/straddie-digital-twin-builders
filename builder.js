@@ -287,10 +287,6 @@
     }
   };
 
-  function todayIso() {
-    return new Date().toISOString().slice(0, 10);
-  }
-
   function value(name) {
     const element = form.elements[name];
     return element ? String(element.value || "").trim() : "";
@@ -298,10 +294,6 @@
 
   function clean(text) {
     return String(text || "").replace(/\s+/g, " ").trim();
-  }
-
-  function yaml(text) {
-    return '"' + String(text || "not supplied").replace(/\\/g, "\\\\").replace(/"/g, '\\"') + '"';
   }
 
   function slugify(text) {
@@ -416,19 +408,19 @@
   function toolSettings() {
     const profile = selectedTool();
     const lines = [
-      "- Tool profile: " + profile.name,
-      "- Model or mode: " + profile.model,
-      "- First pass: " + (value("output_shape") || "One still image"),
-      "- Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape"),
-      "- Fidelity: " + (value("quality_target") || "Medium / normal quality"),
-      "- Practical note: " + profile.settingHint
+      "Tool: " + profile.name,
+      "Mode: " + profile.model,
+      "First pass: " + (value("output_shape") || "One still image"),
+      "Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape"),
+      "Fidelity: " + (value("quality_target") || "Medium / normal quality"),
+      "Note: " + profile.settingHint
     ];
 
     if (profile.type === "video") {
-      lines.push("- Motion rule: use one short shot before asking for a sequence.");
+      lines.push("Motion rule: use one short shot before asking for a sequence.");
     }
     if (profile.type === "world" || profile.type === "world-prep") {
-      lines.push("- Spatial rule: make the base scene readable before adding controls, states or data overlays.");
+      lines.push("Spatial rule: make the base scene readable before adding controls, states or data overlays.");
     }
 
     return lines.join("\n");
@@ -474,139 +466,66 @@
     const states = clean(value("state_changes"));
     const controls = clean(value("customisation_controls"));
     const assets = clean(value("assets_to_build"));
+    const preparedBy = clean(value("prepared_by"));
+    const sourceDate = clean(value("source_date"));
+    const status = clean(value("draft_status"));
+    const reviewer = clean(value("reviewer"));
+    const consent = clean(value("consent_scope"));
+    const correction = clean(value("correction_path"));
+    const privateDetails = clean(value("private_exclusions"));
 
     if (iteration) {
-      lines.push("Edit pass:");
-      lines.push("Use the approved base image. Change only this: " + iteration + ". Keep the same place, camera angle, main subject and overall style.");
+      lines.push("Edit pass: use the approved base image. Change only this: " + iteration + ". Keep the same place, camera angle, main subject and overall style.");
       lines.push("");
     }
 
     if (states) {
-      lines.push("Video or simulation pass:");
-      lines.push("Use the approved base scene. Animate only these changes: " + states + ". Keep geography, object positions and camera direction stable.");
+      lines.push("Video or simulation pass: use the approved base scene. Animate only these changes: " + states + ". Keep geography, object positions and camera direction stable.");
       lines.push("");
     }
 
     if (assets || controls) {
-      lines.push("World-builder pass:");
-      lines.push("Use the approved base scene as the reference. Build separate editable parts: " + (conciseList(assets) || "not supplied yet") + ".");
+      lines.push("World-builder pass: use the approved base scene as the reference. Build separate editable parts: " + (conciseList(assets) || "not supplied yet") + ".");
       if (controls) lines.push("Expose these simple controls: " + controls + ".");
       lines.push("Keep the first world draft simple before adding extra states or data layers.");
+      lines.push("");
     }
 
-    return lines.length ? lines.join("\n") : "No follow-up prompts supplied yet. Get the first image right before adding edits, video, states or world controls.";
-  }
+    if (preparedBy) lines.push("Prepared by: " + preparedBy + ".");
+    if (sourceDate) lines.push("Source date: " + sourceDate + ".");
+    if (status && status !== "Draft prompt - owner checks it") lines.push("Status: " + status + ".");
+    if (reviewer) lines.push("Review with: " + reviewer + ".");
+    if (consent) lines.push("Share/reuse choice: " + consent + ".");
+    if (correction) lines.push("If the result is wrong: " + correction + ".");
+    if (privateDetails) lines.push("Do not include: " + privateDetails + ".");
 
-  function handoffNotes() {
-    const lines = [];
-    addPromptLine(lines, "Separate objects or assets", value("assets_to_build"));
-    addPromptLine(lines, "States or time changes", value("state_changes"));
-    addPromptLine(lines, "Editable controls", value("customisation_controls"));
-    addPromptLine(lines, "Reference material", value("reference_materials"));
-    addPromptLine(lines, "Version two improvement", value("iteration_handoff"));
-    return lines.length ? lines.join("\n") : "No handoff details supplied yet.";
-  }
-
-  function readable(name) {
-    return value(name) || "Not supplied yet.";
-  }
-
-  function bullet(label, body) {
-    return "- " + label + ": " + (clean(body) || "Not supplied yet.");
+    return clean(lines.join("\n")) || "No follow-up notes yet. Get the first image right before adding edits, video, states or world controls.";
   }
 
   function buildMarkdown() {
     const config = activeConfig();
     const title = value("record_title") || config.title;
-    const sourceDate = value("source_date") || todayIso();
 
     return [
       "# " + title,
       "",
-      "This Markdown (.md) file keeps the model prompt separate from the human notes. Paste the first prompt only. Use the follow-up prompts after the first image or world draft is close to the picture in your head.",
+      "Paste the first section into the chosen tool. Use the follow-up notes only after the first result is close.",
       "",
-      "## 1. Paste This First",
-      "",
-      "```text",
-      pastePrompt(config),
-      "```",
-      "",
-      "## 2. Negative Prompt",
+      "## Prompt",
       "",
       "```text",
-      negativePrompt(),
-      "```",
-      "",
-      "## 3. Tool Settings",
-      "",
       toolSettings(),
       "",
-      "## 4. Follow-Up Prompts",
+      pastePrompt(config),
+      "",
+      "Avoid: " + negativePrompt(),
+      "```",
+      "",
+      "## Optional Follow-Up Notes",
       "",
       "```text",
       followUpPrompts(),
       "```",
-      "",
-      "## 5. Human Scene Notes",
-      "",
-      bullet("Scale", config.scale),
-      bullet("Plain name", config.plainName),
-      bullet("Human scale note", config.scaleRule),
-      bullet("Scene", readable("prompt_sentence")),
-      bullet("Place facts", readable("real_place")),
-      bullet("Focal point", readable("focal_point")),
-      bullet("Foreground", readable("foreground")),
-      bullet("Middle ground", readable("middle_ground")),
-      bullet("Background", readable("background")),
-      bullet("Camera", readable("camera_view")),
-      bullet("Light/weather/mood", readable("light_weather")),
-      bullet("Materials/local texture", readable("materials_texture")),
-      bullet("People/movement", readable("people_movement")),
-      bullet("Style", readable("style_reference")),
-      bullet("Reference material", readable("reference_materials")),
-      "",
-      "## 6. World Or Video Handoff Notes",
-      "",
-      bullet("Must stay accurate", readable("must_be_accurate")),
-      bullet("Separate assets", readable("assets_to_build")),
-      bullet("States over time", readable("state_changes")),
-      bullet("Easy controls", readable("customisation_controls")),
-      bullet("Version two", readable("iteration_handoff")),
-      "",
-      "```text",
-      handoffNotes(),
-      "```",
-      "",
-      "## Privacy And Sharing Choices",
-      "",
-      bullet("Prompt status", value("draft_status")),
-      bullet("Chosen helpers", value("reviewer")),
-      bullet("Share or reuse choice", value("consent_scope")),
-      bullet("Correction path", value("correction_path")),
-      bullet("Private or sensitive details not included", value("private_exclusions")),
-      "",
-      "## Packet Metadata",
-      "",
-      "```yaml",
-      "schema: " + yaml(config.schema),
-      "scale: " + yaml(config.scale),
-      "prompt_type: " + yaml(config.title),
-      "target_generator: " + yaml(value("target_engine")),
-      "first_pass: " + yaml(value("output_shape")),
-      "aspect_ratio: " + yaml(value("aspect_ratio")),
-      "fidelity: " + yaml(value("quality_target")),
-      "title: " + yaml(title),
-      "prepared_by: " + yaml(value("prepared_by")),
-      "source_date: " + yaml(sourceDate),
-      "draft_status: " + yaml(value("draft_status")),
-      "```",
-      "",
-      "## Public Doors",
-      "",
-      "- Digital Twin Builders: https://auraofintelligence.github.io/straddie-digital-twin-builders/",
-      "- Purple Party for Australia civic twin builders: https://auraofintelligence.github.io/p4a_xyz/pages/civic-twin-builders.html",
-      "- Straddie Noticeboard Network: https://auraofintelligence.github.io/straddie-noticeboard-network/",
-      "- Straddie Capsule Surge Lab: https://auraofintelligence.github.io/straddie-capsule-surge-lab/",
       ""
     ].join("\n");
   }
