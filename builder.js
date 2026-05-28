@@ -407,30 +407,17 @@
 
   function toolSettings() {
     const profile = selectedTool();
-    const lines = [
+    return [
       "Tool: " + profile.name,
-      "Mode: " + profile.model,
-      "First pass: " + (value("output_shape") || "One still image"),
       "Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape"),
-      "Fidelity: " + (value("quality_target") || "Medium / normal quality"),
-      "Note: " + profile.settingHint
-    ];
-
-    if (profile.type === "video") {
-      lines.push("Motion rule: use one short shot before asking for a sequence.");
-    }
-    if (profile.type === "world" || profile.type === "world-prep") {
-      lines.push("Spatial rule: make the base scene readable before adding controls, states or data overlays.");
-    }
-
-    return lines.join("\n");
+      "Fidelity: " + (value("quality_target") || "Medium / normal quality")
+    ].join("\n");
   }
 
   function pastePrompt(config) {
     const profile = selectedTool();
     const lines = [
       profile.opener,
-      "Aspect ratio: " + (value("aspect_ratio") || "16:9 landscape") + ".",
       "Keep it to one place, one moment, one camera view and one main subject."
     ];
 
@@ -505,11 +492,10 @@
   function buildMarkdown() {
     const config = activeConfig();
     const title = value("record_title") || config.title;
-
-    return [
+    const followUps = followUpPrompts();
+    const hasFollowUps = followUps !== "No follow-up notes yet. Get the first image right before adding edits, video, states or world controls.";
+    const parts = [
       "# " + title,
-      "",
-      "Paste the first section into the chosen tool. Use the follow-up notes only after the first result is close.",
       "",
       "## Prompt",
       "",
@@ -519,15 +505,22 @@
       pastePrompt(config),
       "",
       "Avoid: " + negativePrompt(),
-      "```",
-      "",
-      "## Optional Follow-Up Notes",
-      "",
-      "```text",
-      followUpPrompts(),
-      "```",
-      ""
-    ].join("\n");
+      "```"
+    ];
+
+    if (hasFollowUps) {
+      parts.push(
+        "",
+        "## Optional Follow-Up Notes",
+        "",
+        "```text",
+        followUps,
+        "```"
+      );
+    }
+
+    parts.push("");
+    return parts.join("\n");
   }
 
   function saveState() {

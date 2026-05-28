@@ -839,7 +839,8 @@ textarea {
 }
 
 .output-panel textarea {
-  min-height: 760px;
+  min-height: 360px;
+  max-height: 62vh;
   font-family: Consolas, "Liberation Mono", monospace;
   font-size: .9rem;
   line-height: 1.5;
