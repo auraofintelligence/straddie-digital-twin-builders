@@ -17,8 +17,8 @@
       <section class="page-hero visual-hero" id="top" aria-labelledby="page-title">
         <div>
           <span class="section-label">Working prompt builder</span>
-          <h1 id="page-title">Turn the picture in your head into a model-ready prompt.</h1>
-          <p class="lede">Answer simple questions. The builder writes a clean copy-paste prompt first, then a Markdown (.md) packet with the scene recipe, source notes, edit controls and privacy choices underneath.</p>
+          <h1 id="page-title">Turn the picture in your head into a prompt current models can follow.</h1>
+          <p class="lede">Answer simple questions. The builder writes one clear first-pass prompt, then keeps references, settings, follow-up edits and private notes separate so the model is not asked to paint five ideas at once.</p>
         </div>
         <figure class="image-card">
           <img src="assets/img/forms-intake-desk.webp" alt="Paper forms, a laptop and maker-space intake materials arranged on a desk">
@@ -51,32 +51,45 @@
               <span class="field-help">The date for the facts, site status or local notes used in this prompt.</span>
               <input name="source_date" type="date">
             </label>
-            <label>Target generator
+            <label>Target tool
+              <span class="field-help">Choose where the first prompt is likely to go. This changes the wording and settings.</span>
               <select name="target_engine">
-                <option>Image generator - one still image</option>
-                <option>Video generator - short moving scene</option>
-                <option>Three-dimensional (3D) world builder - walkable space</option>
-                <option>Four-dimensional (4D) simulation - time and state changes</option>
-                <option>Game or interactive prototype</option>
-                <option>Mixed pipeline</option>
+                <option>OpenAI GPT Image 2 - still image</option>
+                <option>Grok Imagine - still image</option>
+                <option>Grok Imagine - short video</option>
+                <option>World Labs Marble - text to world</option>
+                <option>World Labs Marble - image/video to world prep</option>
+                <option>General image generator</option>
               </select>
             </label>
-            <label>Output shape
+            <label>First pass
+              <span class="field-help">Start with the smallest useful result. A good first image is easier to turn into video or a world.</span>
               <select name="output_shape">
-                <option>One accurate still image</option>
-                <option>Scene set / storyboard</option>
-                <option>Walkable three-dimensional (3D) scene</option>
-                <option>Four-dimensional (4D) state-change brief</option>
-                <option>Prompt pack for repeated iteration</option>
+                <option>One still image</option>
+                <option>One edit of an existing image</option>
+                <option>One short video shot</option>
+                <option>One spatial reference image for a world</option>
+                <option>One panorama/world draft</option>
               </select>
             </label>
-            <label>Quality target
+            <label>Shape
+              <span class="field-help">Use the same ratio in the model settings when the tool allows it.</span>
+              <select name="aspect_ratio">
+                <option>16:9 landscape</option>
+                <option>1:1 square</option>
+                <option>9:16 vertical</option>
+                <option>4:3 standard</option>
+                <option>3:2 photo</option>
+                <option>2:1 wide banner</option>
+                <option>auto</option>
+              </select>
+            </label>
+            <label>Fidelity
+              <span class="field-help">Draft is cheaper/faster. High is better when text, maps or small details matter.</span>
               <select name="quality_target">
-                <option>Accurate local concept</option>
-                <option>Beautiful hero image</option>
-                <option>Simple builder blockout first</option>
-                <option>Storyboard sequence</option>
-                <option>World-builder handoff</option>
+                <option>Draft / quick test</option>
+                <option>Medium / normal quality</option>
+                <option>High / text or detailed map</option>
               </select>
             </label>
             <label>Prompt status
@@ -122,7 +135,7 @@
 
         <aside class="output-panel" aria-labelledby="output-title">
           <h2 id="output-title">Generated prompt packet</h2>
-          <p class="output-hint">The first section is the clean model prompt. The rest explains the scene for humans, agents and later edits.</p>
+          <p class="output-hint">Paste the first prompt into the chosen tool. Keep the follow-up prompts for one change at a time.</p>
           <textarea data-markdown-output spellcheck="false"></textarea>
         </aside>
       </section>
@@ -130,8 +143,8 @@
       <section class="section accent-band" aria-labelledby="builder-boundary">
         <div class="wide-copy">
           <span class="section-label">Self-sovereign prompt</span>
-          <h2 id="builder-boundary">Simple questions in. Clean prompt out.</h2>
-          <p>The builder keeps the model-facing prompt clear and puts human notes underneath. That gives better images and worlds without asking everyday people to learn prompt-engineering jargon first.</p>
+          <h2 id="builder-boundary">One renderable request first.</h2>
+          <p>The builder keeps the first prompt small enough for today’s models: one place, one moment, one camera, one main subject. Once that looks right, the follow-up prompts add movement, edits, states or world-building structure.</p>
         </div>
       </section>
 
