@@ -46,7 +46,7 @@ function renderFooter() {
 
   footer.innerHTML = `
     <div class="footer-inner">
-      <p>Straddie Digital Twin Builders. Plain-English prompt questionnaires for Level 0 (L0) to Level 2 (L2) scenes, spaces, islands and watershed simulations.</p>
+      <p>Straddie Digital Twin Builders. Plain-English prompt questionnaires for Level 0 (L0) to Level 2 (L2) scenes, spaces, islands and outside world-building tools.</p>
       <nav class="footer-links" aria-label="Footer links">
         <a href="sources.html">Sources</a>
         <a href="boundaries.html">Sovereignty</a>

@@ -2,8 +2,8 @@
 
 This prompt-builder site was shaped from a local research pass across:
 
-- `SSB`
-- `p4a_xyz`
+- Sovereign Space Builder (repo folder: `SSB`)
+- `p4a_xyz` - Purple Party for Australia civic twin builder source repo
 - `strange-but-true`
 - `straddie-makerspace-lab`
 - `straddie-disaster-kiosks`
@@ -11,8 +11,8 @@ This prompt-builder site was shaped from a local research pass across:
 - `ballow-road-sand-screen-hub`
 - `ready-set-co-op-trust-hub`
 - `straddie-capsule-surge-lab`
-- `GAJRA_Earth-Space-AI_Summit`
-- `aukus-space-gambit`
+- `GAJRA_Earth-Space-AI_Summit` - Earth, space and artificial intelligence summit source repo
+- `aukus-space-gambit` - Australia, United Kingdom and United States space gambit source repo
 
 Local archive anchors:
 
@@ -26,8 +26,8 @@ Local archive anchors:
 
 External public references:
 
-- Commonwealth DCCEEW, Moreton Bay Ramsar listing: https://www.dcceew.gov.au/water/wetlands/australian-ramsar-wetlands/moreton-bay
+- Commonwealth Department of Climate Change, Energy, the Environment and Water, Moreton Bay Ramsar listing: https://www.dcceew.gov.au/water/wetlands/australian-ramsar-wetlands/moreton-bay
 - Queensland Government, Minjerribah Rangers: https://www.qld.gov.au/environment/plants-animals/conservation/community/land-sea-rangers/locations/minjerribah-north-stradbroke-island
-- Healthy Land & Water, SEQ report card: https://www.healthylandwater.com.au/resources/report-card
+- Healthy Land & Water, South East Queensland report card: https://www.healthylandwater.com.au/resources/report-card
 - LJ Hooker Property Centre, 10-12 Ballow Road sale brochure: https://brochures.ljhooker.com.au/brochure/commercial-dunwich-qld-land-development-10-12-ballow-road-btvyf2s.pdf?r=6795465
 - Queensland Government, Gumpi Draft Master Plan public consultation summary: https://www.planning.qld.gov.au/__data/assets/pdf_file/0020/85502/public-consultation-summary-on-draft-gumpi-master-plan-2023.PDF

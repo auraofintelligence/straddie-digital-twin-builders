@@ -1,6 +1,6 @@
 # Straddie Digital Twin Builders
 
-A Strange But True family static site for plain-English `.md` prompt-builder questionnaires that help visual generators, 3D world builders and simulation agents generate accurate customisable scenes from Level 0 (L0) private spaces through Level 1 (L1) places to Level 2 (L2) island and watershed simulations.
+A Strange But True family static site for plain-English Markdown (`.md`) prompt-builder questionnaires that prepare accurate customisable scene prompts for external image generators, video models, three-dimensional (3D) and four-dimensional (4D) world builders and simulation tools, from Level 0 (L0) private spaces through Level 1 (L1) places to Level 2 (L2) bioregion prompts.
 
 Public site target:
 
@@ -16,7 +16,7 @@ Source repo target:
 - `architecture.html` - Level 0 (L0), Level 1 (L1), Level 2 (L2) prompt architecture
 - `l0.html` - private space prompts
 - `l1.html` - place mesh and venue world prompts
-- `l2.html` - Moreton Bay, island and watershed simulation prompts
+- `l2.html` - bioregion-scale prompt briefs using Moreton Bay, islands and watershed context
 - `builders.html` - working Markdown prompt questionnaire
 - `network.html` - related Strange But True family sites
 - `boundaries.html` - self-sovereign sharing controls
