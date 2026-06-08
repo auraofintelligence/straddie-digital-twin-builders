@@ -16,6 +16,7 @@ Source repo target:
 - `architecture.html` - Level 0 (L0), Level 1 (L1), Level 2 (L2) prompt architecture
 - `l0.html` - private space prompts
 - `l1.html` - place mesh and venue world prompts
+- `dunwich-ferry-terminal.html` - Dunwich (Gumpi/Goompi) ferry terminal upgrade capture-to-prompt page
 - `l2.html` - bioregion-scale prompt briefs using Moreton Bay, islands and watershed context
 - `builders.html` - working Markdown prompt questionnaire
 - `network.html` - related Strange But True family sites
@@ -24,4 +25,4 @@ Source repo target:
 
 ## Sovereignty
 
-This is a draft public doorway and prompt-builder pattern. It helps people choose what to generate, what to customise, what to keep local and what to share. It is not a finished digital twin, clinical tool, property commitment, funding commitment or surveillance system.
+This site turns plain choices into Markdown (`.md`) prompt files for outside visual and world-building tools. It helps people say what scene they want, what can be customised, what should stay local and what needs a source label.

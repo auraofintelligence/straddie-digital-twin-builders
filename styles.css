@@ -720,6 +720,64 @@ body[data-page="architecture"] .visual-hero .image-card img {
   margin-bottom: .35rem;
 }
 
+.ferry-hero > div {
+  width: min(680px, 54vw, calc(100% - 2.5rem));
+}
+
+.ferry-hero h1 {
+  max-width: 13ch;
+  font-size: clamp(2.2rem, 4vw, 4.35rem);
+}
+
+.prompt-example,
+.song-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 32px rgba(6, 32, 45, .08);
+  padding: 1.25rem;
+}
+
+.prompt-example {
+  margin-bottom: 1rem;
+}
+
+.prompt-example h3 {
+  margin: 0 0 .6rem;
+  color: var(--deep);
+}
+
+.prompt-example p {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.song-card {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.song-card p {
+  margin: 0 0 .75rem;
+  color: var(--deep);
+  font-family: "Nunito Sans", Arial, sans-serif;
+  font-size: clamp(1.65rem, 3.5vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.song-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.compact-grid {
+  margin-top: 1rem;
+}
+
 .builder-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr);
@@ -1134,6 +1192,14 @@ td {
     max-width: 100%;
     margin: 0;
     padding: 17rem 1rem 4rem;
+  }
+
+  .ferry-hero > div {
+    width: 100%;
+  }
+
+  .ferry-hero h1 {
+    max-width: 100%;
   }
 
   .visual-hero .lede {
